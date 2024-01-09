@@ -16,6 +16,10 @@ body {
     box-sizing: border-box;
 }
 
+p {
+    cursor: default;
+}
+
 .main-panel{
     height: 100%;
     width: 100%;
@@ -36,7 +40,7 @@ body {
     background: rgb(12, 12, 12);
     border: none;
     color: rgb(209, 213, 219);
-    padding: 15px;
+    padding: 15px 25px;
     font-size: 14px;
     cursor: pointer;
     border: 1px solid rgb(39, 39, 42);
@@ -57,6 +61,28 @@ body {
     width: 100%;
     justify-content: space-between;
     align-items: center;
+}
+
+#sessionsContainer {
+    height: 100%;
+    overflow: scroll;
+}
+
+.chat-session{
+    width: 100%;
+    background: rgb(12, 12, 12);
+    color: rgb(209, 213, 219);
+    border: 1px solid rgb(39, 39, 42);
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.chat-session:hover {
+    background: rgb(24, 24, 25);
 }
 
 #chat-container {
@@ -84,6 +110,19 @@ body {
     display: flex;
     width: (100% - 40px);
     padding: 10px 20px;
+    align-items: center;
+}
+
+.message-container .material-symbols-outlined{
+    color: transparent;
+    margin: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.message-container:hover .material-symbols-outlined{
+    color: rgb(209, 213, 219);
 }
 
 .message-container.user {
@@ -139,6 +178,7 @@ body {
 }
 
 #submitBtn {
+    display: flex;
     width: 35px;
     height: 35px;
     cursor: pointer;
@@ -146,6 +186,8 @@ body {
     background-color: rgb(209, 213, 219);
     border: 1px solid rgb(39, 39, 42);
     border-radius: 4px;
+    align-items: center;
+    justify-content: center;
 }
 
 #submitBtn svg{

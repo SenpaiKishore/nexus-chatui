@@ -18,21 +18,22 @@ function loadSessions(){
         sessionBtn.onclick = function() {
           loadMessages(this.id);
         };
-        document.getElementById("side-panel").appendChild(sessionBtn);
+        document.getElementById("sessionsContainer").appendChild(sessionBtn);
       });
   });
 }
 
 function loadMessages(sessionId){
+  document.getElementById("chat-messages").innerHTML = '';
   if (sessionId == 'newchat'){
-    document.getElementById("chat-messages").innerHTML = '';
+    currentSessionId = "newchat";
   } else {
+    currentSessionId = sessionId;
     fetch('../assets/history.json')
     .then(response => response.json())
     .then(data => {
       data.sessions.forEach(session => {
         if (sessionId == session.sessionID){
-          document.getElementById("chat-messages").innerHTML = '';
           session.messages.forEach(message => {        
             var messagePara = document.createElement('p');
             messagePara.innerHTML = message.content;
@@ -52,6 +53,9 @@ function loadMessages(sessionId){
       });
     });
   }
+  var textarea = document.getElementById("query");
+  textarea.focus();
+  console.log(currentSessionId)
 }
 
 function sendMessage(){
@@ -69,7 +73,6 @@ function sendMessage(){
   messageContainerDiv.className = 'message-container user';
   messageContainerDiv.appendChild(messageDiv);
   document.getElementById("chat-messages").appendChild(messageContainerDiv);
-
   // Make a POST request to the Flask API
   fetch('http://localhost:8080/api/query', {
     method: 'POST',
@@ -77,7 +80,7 @@ function sendMessage(){
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      "sessionID": "NEWCHAT",
+      "sessionID": currentSessionId,
       "query": query,
     }),
   })
@@ -96,7 +99,8 @@ function sendMessage(){
   .catch(error => {
     console.error('Error:', error);
   });
-
+  
+  loadMessages(currentSessionId);
 }
 function autoResize() {
   var textarea = document.getElementById('query');

@@ -22,6 +22,16 @@
           "timestamp": "2024-01-09 20:55:51",
           "user": "Kishore",
           "content": "Oh shit! Today is Pooja's birthday! She is my sister"
+        },
+        {
+          "timestamp": "2024-01-10 00:25:22",
+          "user": "Kishore",
+          "content": "Do you have any ideas?"
+        },
+        {
+          "timestamp": "2024-01-10 00:25:47",
+          "user": "Ava",
+          "content": " I don't have any specific ideas right now. Let's talk about something else, like our shared interests or what we plan to do together in the future."
         }
       ]
     },
@@ -37,6 +47,21 @@
           "timestamp": "2024-01-09 20:55:51",
           "user": "Ava",
           "content": "Its Pooja's Birthday"
+        }
+      ]
+    },
+    {
+      "sessionID": "7c9327f0-9b26-468e-8bc0-ee199129dda1",
+      "messages": [
+        {
+          "timestamp": "2024-01-10 00:28:38",
+          "user": "Kishore",
+          "content": "Hey Ava!"
+        },
+        {
+          "timestamp": "2024-01-10 00:28:58",
+          "user": "Ava",
+          "content": " Hey Kishore! I'm here to help. What's on your mind?"
         }
       ]
     }

@@ -5,27 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXUS</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <div class="main-panel">
         <div id="chat-container">
             <div id="chat-messages">
+                <div class="message-container user">
+                    <div class="message"><p>Whose birthday is it today??</p></div>
+                    <span class="material-symbols-outlined">delete</span>
+                </div>
+                <div class="message-container system">
+                    <div class="message"><p>Its Pooja's Birthday</p></div>
+                </div>
             </div>
             <form onsubmit="sendMessage()">
                 <div id="user-input">
                     <textarea tabindex="0" rows="1" placeholder="Send a message." spellcheck="false" id="query" oninput="autoResize()" onkeypress="handleKeyPress(event)"></textarea>
-                    <button type="submit" id="submitBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
-                        <path d="M200 32v144a8 8 0 0 1-8 8H67.31l34.35 34.34a8 8 0 0 1-11.32 11.32l-48-48a8 8 0 0 1 0-11.32l48-48a8 8 0 0 1 11.32 11.32L67.31 168H184V32a8 8 0 0 1 16 0Z"></path>
-                        </svg></button>
+                    <button type="submit" id="submitBtn"><span class="material-symbols-outlined">arrow_upward</span></button>
                 </div>
             </form>
         </div>
     </div>
     <div class="side-panel" id="side-panel">
-        <button id="newchat" onclick="loadMessages(this.id)"><div><span>New Chat</span><span id="newPlus">+</span></div></button>
-        <button class="chat-session"> Chat 1</button>
-        <button class="chat-session"> Chat 2</button>
-        <button class="chat-session"> Chat 3</button>
+        <button id="newchat" onclick="loadMessages(this.id)"><div><span>New Chat</span><span class="material-symbols-outlined">add</span></div></button>
+        <div id="sessionsContainer">
+
+        </div>
     </div>
     
     <script src="script.js"></script>

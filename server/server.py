@@ -30,8 +30,8 @@ def query():
     with open("../assets/history.json", 'r') as file:
         jsonFile = json.load(file)
 
-    if sessionId == "NEWCHAT":
-        sessionId = uuid.uuid4()
+    if sessionId == "newchat":
+        sessionId = str(uuid.uuid4())
         jsonFile["sessions"].append({
                 "sessionID": sessionId,
                 "messages": [],
@@ -40,9 +40,9 @@ def query():
     for session in jsonFile['sessions']:
         if session['sessionID'] == sessionId:
             session["messages"].append({
-                "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "User": "Kishore",
-                "Content": query
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "user": "Kishore",
+                "content": query
             })
         
     with open("../assets/history.json", 'w') as file:
@@ -54,9 +54,9 @@ def query():
     for session in jsonFile['sessions']:
         if session['sessionID'] == sessionId:
             session["messages"].append({
-                "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "User": "Ava",
-                "Content": answer
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "user": "Ava",
+                "content": answer
             })
     
     with open("../assets/history.json", 'w') as file:
