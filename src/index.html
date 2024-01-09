@@ -13,7 +13,6 @@
             </div>
             <form onsubmit="sendMessage()">
                 <div id="user-input">
-                    <!-- <input type="text" name="" id="query" placeholder="Send a message." oninput="autoResize()"> -->
                     <textarea tabindex="0" rows="1" placeholder="Send a message." spellcheck="false" id="query" oninput="autoResize()" onkeypress="handleKeyPress(event)"></textarea>
                     <button type="submit" id="submitBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
                         <path d="M200 32v144a8 8 0 0 1-8 8H67.31l34.35 34.34a8 8 0 0 1-11.32 11.32l-48-48a8 8 0 0 1 0-11.32l48-48a8 8 0 0 1 11.32 11.32L67.31 168H184V32a8 8 0 0 1 16 0Z"></path>
@@ -22,11 +21,11 @@
             </form>
         </div>
     </div>
-    <div class="side-panel">
-        <button id="newChatBtn"><div><span>New Chat</span><span id="newPlus">+</span></div></button>
-        <button class="chat-history"> Chat 1</button>
-        <button class="chat-history"> Chat 2</button>
-        <button class="chat-history"> Chat 3</button>
+    <div class="side-panel" id="side-panel">
+        <button id="newchat" onclick="loadMessages(this.id)"><div><span>New Chat</span><span id="newPlus">+</span></div></button>
+        <button class="chat-session"> Chat 1</button>
+        <button class="chat-session"> Chat 2</button>
+        <button class="chat-session"> Chat 3</button>
     </div>
     
     <script src="script.js"></script>

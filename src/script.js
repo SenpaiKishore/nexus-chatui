@@ -1,7 +1,58 @@
+var currentSessionId = "newchat"
+
 document.addEventListener("DOMContentLoaded", function() {
   var textarea = document.getElementById("query");
   textarea.focus();
+  loadSessions();
 });
+
+function loadSessions(){
+  fetch('../assets/history.json')
+    .then(response => response.json())
+    .then(data => {
+      data.sessions.forEach(session => {
+        var sessionBtn = document.createElement('button');
+        sessionBtn.innerHTML = session.sessionID;
+        sessionBtn.className = 'chat-session';
+        sessionBtn.id = session.sessionID;
+        sessionBtn.onclick = function() {
+          loadMessages(this.id);
+        };
+        document.getElementById("side-panel").appendChild(sessionBtn);
+      });
+  });
+}
+
+function loadMessages(sessionId){
+  if (sessionId == 'newchat'){
+    document.getElementById("chat-messages").innerHTML = '';
+  } else {
+    fetch('../assets/history.json')
+    .then(response => response.json())
+    .then(data => {
+      data.sessions.forEach(session => {
+        if (sessionId == session.sessionID){
+          document.getElementById("chat-messages").innerHTML = '';
+          session.messages.forEach(message => {        
+            var messagePara = document.createElement('p');
+            messagePara.innerHTML = message.content;
+            var messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.appendChild(messagePara);
+            var messageContainerDiv = document.createElement('div');
+            if(message.user == "Kishore"){
+              messageContainerDiv.className = 'message-container user';
+            } else {
+              messageContainerDiv.className = 'message-container system';
+            }
+            messageContainerDiv.appendChild(messageDiv);
+            document.getElementById("chat-messages").appendChild(messageContainerDiv);
+          });
+        }
+      });
+    });
+  }
+}
 
 function sendMessage(){
   const queryInput = document.getElementById('query');
