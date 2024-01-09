@@ -7,7 +7,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(24, 24, 25);
+    background-color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,8 +19,9 @@ body {
 
 #chat-container {
     width: 100%;
-    max-width: 872px;
+    max-width: 672px;
     height: 90%;
+    background: rgb(24, 24, 25);
     border: 1px solid rgb(39, 39, 42);
     border-radius: 5px;
     overflow: hidden;
@@ -31,24 +32,44 @@ body {
 
 #chat-messages {
     width: calc(100% - 20px);
-    padding: 10px;
+    padding: 20px 10px;
     min-height: 200px;
     overflow-y: auto;
     color: rgb(209, 213, 219);
 }
 
 .message-container {
+    display: flex;
     width: (100% - 40px);
-    padding: 20px;
+    padding: 10px 20px;
+}
+
+.message-container.user {
+    justify-content: start;
+}
+
+.message-container.system {
+    justify-content: end;
+}
+
+.message-container.user .message{
+    color: rgb(209, 213, 219);
+    background: rgb(12, 12, 12);
+}
+
+.message-container.system .message{
+    color: rgb(12, 12, 12);
+    background: rgb(209, 213, 219);
 }
 
 .message {
     max-width: 80%;
     width: fit-content;
     border: 1px solid rgb(39, 39, 42);
+    border-radius: 5px;
     padding: 0 20px;
-    background: rgb(12, 12, 12);
 }
+
 #user-input {
     display: flex;
     justify-content: space-between;
@@ -56,6 +77,8 @@ body {
     padding: 10px;
     background-color: rgb(12, 12, 12);
     margin: 20px;
+    border: 1px solid rgb(39, 39, 42);
+    border-radius: 5px;
 }
 
 #query {
@@ -78,6 +101,9 @@ body {
     height: 35px;
     cursor: pointer;
     margin: 0 20px;
+    background-color: rgb(209, 213, 219);
+    border: 1px solid rgb(39, 39, 42);
+    border-radius: 4px;
 }
 
 #submitBtn svg{

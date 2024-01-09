@@ -16,7 +16,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 app = Flask(__name__)
 CORS(app)
 
-loader = JSONLoader(file_path='history.json',jq_schema='.',text_content=False)
+loader = JSONLoader(file_path='../assets/history.json',jq_schema='.',text_content=False)
 data = loader.load()
 vectorstore = Chroma.from_documents(documents=data, embedding=GPT4AllEmbeddings())
 

@@ -1,4 +1,7 @@
-
+document.addEventListener("DOMContentLoaded", function() {
+  var textarea = document.getElementById("query");
+  textarea.focus();
+});
 
 function sendMessage(){
   const queryInput = document.getElementById('query');
@@ -6,6 +9,16 @@ function sendMessage(){
   const query = queryInput.value;
 
   queryInput.value = '';
+
+  var messagePara = document.createElement('p');
+  messagePara.innerHTML = query;
+  var messageDiv = document.createElement('div');
+  messageDiv.className = 'message';
+  messageDiv.appendChild(messagePara);
+  var messageContainerDiv = document.createElement('div');
+  messageContainerDiv.className = 'message-container user';
+  messageContainerDiv.appendChild(messageDiv);
+  document.getElementById("chat-messages").appendChild(messageContainerDiv);
 
   // Make a POST request to the Flask API
   fetch('http://localhost:8080/api/query', {
@@ -17,14 +30,21 @@ function sendMessage(){
       "query": query,
     }),
   })
-    .then(response => response.json())
-    .then(data => {
-      // Handle the response from the Flask API
-      resultContainer.innerHTML = `Result: ${data.result}`;
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  .then(response => response.json())
+  .then(data => {
+    var messagePara = document.createElement('p');
+    messagePara.innerHTML = data.result;
+    var messageDiv = document.createElement('div');
+    messageDiv.className = 'message';
+    messageDiv.appendChild(messagePara);
+    var messageContainerDiv = document.createElement('div');
+    messageContainerDiv.className = 'message-container system';
+    messageContainerDiv.appendChild(messageDiv);
+    document.getElementById("chat-messages").appendChild(messageContainerDiv);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
 }
 function autoResize() {
