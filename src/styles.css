@@ -9,12 +9,54 @@ body {
     padding: 0;
     background-color: black;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100vh;
     font-family: monospace;
     box-sizing: border-box;
+}
+
+.main-panel{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.side-panel {
+    display: flex;
+    width: 30%;
+    height: calc(100% - 60px);
+    background: rgb(24, 24, 25);
+    flex-direction: column;
+    padding: 30px;
+}
+
+#newChatBtn {
+    background: rgb(12, 12, 12);
+    border: none;
+    color: rgb(209, 213, 219);
+    padding: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid rgb(39, 39, 42);
+    margin-bottom: 20px;
+    transition: 0.2s ease;
+}
+
+#newChatBtn:hover {
+    background: rgb(24, 24, 25);
+}
+
+#newPlus{
+    font-size: 20px;
+}
+
+#newChatBtn div{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #chat-container {

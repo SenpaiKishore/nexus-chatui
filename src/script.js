@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function sendMessage(){
   const queryInput = document.getElementById('query');
-  const resultContainer = document.getElementById('result');
   const query = queryInput.value;
 
   queryInput.value = '';
@@ -27,6 +26,7 @@ function sendMessage(){
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      "sessionID": "NEWCHAT",
       "query": query,
     }),
   })
@@ -51,7 +51,6 @@ function autoResize() {
   var textarea = document.getElementById('query');
   var container = document.getElementById('user-input');
 
-  // Set a threshold to trigger scrolling (e.g., 80% of the max height)
   var maxHeight = parseFloat(getComputedStyle(container).maxHeight);
   
   textarea.style.height = '20px';
@@ -60,7 +59,6 @@ function autoResize() {
     textarea.style.height = textarea.scrollHeight -50 + 'px';
   }
 
-  // If the textarea height exceeds the threshold, scroll to the bottom
   if (textarea.scrollHeight > maxHeight) {
     container.scrollTop = container.scrollHeight;
   }
