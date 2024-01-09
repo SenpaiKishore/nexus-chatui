@@ -10,6 +10,7 @@ import warnings
 import json
 from datetime import datetime
 import uuid
+import os
                 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 app = Flask(__name__)
@@ -19,7 +20,9 @@ llm = Ollama(model="ava-3.1", callbacks=([StreamingStdOutCallbackHandler()]))
 
 @app.route('/api/query', methods=['POST'])
 def query():
-    loader = JSONLoader(file_path='../assets/history.json',jq_schema='.',text_content=False)
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    json_path = os.path.join(script_dir, "../assets/history.json")
+    loader = JSONLoader(file_path=json_path,jq_schema='.',text_content=False)
     data = loader.load()
     vectorstore = Chroma.from_documents(documents=data, embedding=GPT4AllEmbeddings())
     qa = RetrievalQA.from_chain_type(llm, retriever=vectorstore.as_retriever(), chain_type="stuff", callbacks=([StreamingStdOutCallbackHandler()]))
@@ -27,7 +30,7 @@ def query():
     sessionId = request.json.get("sessionID")
     query = request.json.get("query")
 
-    with open("../assets/history.json", 'r') as file:
+    with open(json_path, 'r') as file:
         jsonFile = json.load(file)
 
     if sessionId == "newchat":
@@ -45,7 +48,7 @@ def query():
                 "content": query
             })
         
-    with open("../assets/history.json", 'w') as file:
+    with open(json_path, 'w') as file:
         json.dump(jsonFile, file, indent=2)
 
     res = qa("[" + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "]"+ query)
@@ -59,7 +62,7 @@ def query():
                 "content": answer
             })
     
-    with open("../assets/history.json", 'w') as file:
+    with open(json_path, 'w') as file:
         json.dump(jsonFile, file, indent=2)
     
     return jsonify({"result": answer, "sessionID": sessionId})

@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron main.js",
+    "start": "concurrently \"npm:server\" \"npm:electron\"",
+    "server": "python3.9 server/server.py",
+    "electron": "electron main.js",
     "dev": "electron-reload ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "electron": "^28.1.2",
     "electron-reload": "^2.0.0-alpha.1"
-  },
-  "dependencies": {
-    "socket.io-client": "^4.7.3"
   }
 }

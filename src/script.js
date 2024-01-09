@@ -95,12 +95,13 @@ function sendMessage(){
     messageContainerDiv.className = 'message-container system';
     messageContainerDiv.appendChild(messageDiv);
     document.getElementById("chat-messages").appendChild(messageContainerDiv);
+    loadMessages(currentSessionId);
   })
   .catch(error => {
     console.error('Error:', error);
   });
+
   
-  loadMessages(currentSessionId);
 }
 function autoResize() {
   var textarea = document.getElementById('query');
